@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CafeteriaManagement</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+  <div class="mb-3">
+<% if (@user && @user.role=="admin") or (session && session[:view]==2) %>
+<%= render partial: "component/navbarAdmin"%>
+<% else %>
+  <%= render partial:"component/navbar"%>
+<%end%>
+
+  </div>
+  <div class="container align-items-center justify-content-center">
+  <%= yield %>
+    </div>
+
+
+
+
+  </body>
+</html>

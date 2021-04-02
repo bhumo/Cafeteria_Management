@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+<div class="align-items-center col-4 mb-3">
+<h1 class="text-center">Join us!</h1>
+<%= form_with model: @user, url: signup_path do |form|%>
+<% if @user.errors.any?%>
+<div class="mb-3 aler alert-danger", role="alert">
+<%= @user.errors.full_messages do|error_message|%>
+<div> <% error_message%> </div>
+<%end%>
+</div>
+<%end%>
+<div class="mb-3 form-group">
+<%= form.label :username%>
+<%= form.text_field :name, class: "form-control", placeholder: "example@gmail.com"%>
+</div>
+<div class="mb-3">
+<%= form.label :password%>
+<%= form.password_field :password, class: "form-control", placeholder: "password"%>
+</div>
+<div class="mb-3">
+<%= form.label :password_confirmation%>
+<%= form.password_field :password_confirmation, class: "form-control",placeholder: "re-type password"%>
+</div>
+<div class="mb-3">
+<%= form.submit "Sign-Up", class:"btn btn-primary"%>
+</div>
+<% end%>
+</div>
+</div>
