@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   get "/logout", to: "session#destroy"
   post "/login", to: "session#create"
   post "/addClerk", to: "registration#add_clerk"
+  get "/menu", to: "menu#show"
+  post "/menu", to: "menu#create"
+  delete "/menu", to: "menu#destroy"
+  post "/category", to: "category#create"
 end

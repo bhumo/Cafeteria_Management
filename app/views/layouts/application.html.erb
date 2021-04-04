@@ -10,21 +10,17 @@
   </head>
 
   <body>
-
   <div class="mb-3">
-<% if (@user && @user.role=="admin") or (session && session[:view]==2) %>
-<%= render partial: "component/navbarAdmin"%>
-<% else %>
-  <%= render partial:"component/navbar"%>
-<%end%>
-
+    <% if (@user && @user.role=="admin") or (session && session[:view]==2) %>
+     <%= render partial: "component/navbarAdmin"%>
+     <% elsif (@user && @user.role=="customer") or (session && session[:view]==1)%>
+     <%= render partial: "component/navbarCustomer"%>
+    <% else %>
+      <%= render partial:"component/navbar"%>
+    <%end%>
   </div>
   <div class="container align-items-center justify-content-center">
   <%= yield %>
-    </div>
-
-
-
-
+  </div>
   </body>
 </html>

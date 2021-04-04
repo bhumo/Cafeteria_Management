@@ -28,6 +28,7 @@ class RegistrationController < ApplicationController
         # now that the user is created we need to sign-in the user
         # Therefore, we will use session cookie to make sure the data is kept in encrypted form.
         session[:user_id] = @user.id
+        session[:view] = 1
         redirect_to cafeteria_path
         #we can track the session now.
       end

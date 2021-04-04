@@ -1,0 +1,54 @@
+
+<button type="button" class="btn btn-secondary" data-toggle="modal" data-target ="#menuItemModal" >Add Menu Item </button>
+  <div class="modal fade" id="menuItemModal" >
+    <div class="modal-dialog">
+
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Menu Item</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div class="row justify-content-center">
+            <div class="align-items-center">
+              <%= form_with url: menu_path do |form|%>
+
+
+                <div class="mb-3 form-group">
+                <%= form.label :Category%>
+                 <%= form.select(:category_id ,options_from_collection_for_select(Category.all,'id','name')) %>
+                </div>
+
+              <div class="mb-3 form-group">
+                <%= form.label :name%>
+                <%= form.text_field :name, class: "form-control", placeholder: "Dosa"%>
+              </div>
+
+              <div class="mb-3 form-group">
+                <%= form.label :description %>
+                <%= form.text_area :description, class: "form-control", placeholder: "description of the dish"%>
+              </div>
+
+              <div class="mb-3 form-group">
+                <%= form.label :price %>
+                <%= form.text_field :price, class: "form-control", placeholder: "100.0 or 100"%>
+              </div>
+
+
+              <div class="mb-3">
+                <%= form.submit "Create Item", class:"btn btn-primary"%>
+              </div>
+          <% end%>
+        </div>
+        </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>

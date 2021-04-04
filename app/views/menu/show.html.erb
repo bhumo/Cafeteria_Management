@@ -1,0 +1,44 @@
+<div>
+<h1>Menu Items</h1>
+<% if session[:view]==2%>
+<%= render partial: "menu/categoryform"%>
+<%= render partial: "menu/menuform"%>
+<%end%>
+</div>
+<div>
+<% if flash[:notice]%>
+<p> <%= flash[:notice] %></p>
+<% end%>
+
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Category</th>
+      <% if session[:view]==2%>
+      <th>Delete</th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @menu_items.each do |menu_item| %>
+      <tr>
+        <td><%= menu_item.name %></td>
+        <td><%= menu_item.description %></td>
+        <td><%= menu_item.price %></td>
+        <td><%= Category.find_by(id:menu_item.category_id).name %></td>
+        <% if session[:view]==2%>
+        <td><%= link_to 'Destroy', menu_path(id: menu_item.id, name: menu_item.name), method: :delete, data: { confirm: 'Are you sure?' } %></</td>
+        <%end %>
+        <% if session[:view]==1 or session[:view]==3%>
+        <td>Add to Cart</td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
