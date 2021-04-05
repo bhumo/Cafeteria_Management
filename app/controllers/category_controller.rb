@@ -5,6 +5,7 @@ class CategoryController < ApplicationController
     name = name.downcase
     if Category.find_by(name: name) == nil
       @category = Category.new(name: params[:name])
+      @category.save
       flash[:notice] = "Category #{name} is created"
     else
       flash[:notice] = "Category #{name} is not created"
