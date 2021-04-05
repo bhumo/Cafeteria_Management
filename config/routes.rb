@@ -11,4 +11,11 @@ Rails.application.routes.draw do
   post "/menu", to: "menu#create"
   delete "/menu", to: "menu#destroy"
   post "/category", to: "category#create"
+  get "/cart", to: "cart#show"
+  get "/increase", to: "cart#increase"
+  get "/decrease", to: "cart#decrease"
+  get "/destroy", to: "cart#destroy"
+  get "/addCart", to: "cart#add_to_cart"
+  get "/checkout", to: "cart#checkout"
+  get "/orderHistory", to: "order#history"
 end

@@ -17,6 +17,7 @@
       <th>Description</th>
       <th>Price</th>
       <th>Category</th>
+      <th> Add to Cart</th>
       <% if session[:view]==2%>
       <th>Delete</th>
       <% end %>
@@ -35,7 +36,9 @@
         <td><%= link_to 'Destroy', menu_path(id: menu_item.id, name: menu_item.name), method: :delete, data: { confirm: 'Are you sure?' } %></</td>
         <%end %>
         <% if session[:view]==1 or session[:view]==3%>
-        <td>Add to Cart</td>
+        <td>
+        <%= link_to 'Add to Cart', addCart_path(menuitem_id: menu_item.id),method: :get,class: "btn btn-secondary"%>
+        </td>
         <%end%>
       </tr>
     <% end %>

@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+<h1>Cart</h1>
+<% if session[:view]==2%>
+<%= render partial: "menu/categoryform"%>
+<%= render partial: "menu/menuform"%>
+<%end%>
+</div>
+<div>
+<% if flash[:notice]%>
+<p> <%= flash[:notice] %></p>
+<% end%>
+<h6>Subtotal items (<span><%= session[:count]%></span> ): <span class="text-danger"><%= session[:total]%></span></h6>
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <% if session[:view]==2%>
+      <th>Delete</th>
+      <% end %>
+      <th> Quantity</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_items.each do |order_item| %>
+    <% menu_item = Menuitem.find_by(id:order_item.menuitem_id)%>
+      <tr>
+        <td><%= menu_item.name %></td>
+        <td><%= menu_item.description %></td>
+        <td><%= menu_item.price %></td>
+        <% if session[:view]==2%>
+        <td><%= link_to 'Destroy', menu_path(id: menu_item.id, name: menu_item.name), method: :delete, data: { confirm: 'Are you sure?' } %></</td>
+        <%end %>
+        <td>
+        <% if order_item.quantity == 0%>
+        <%= link_to "Del", destroy_path(orderitem_id: order_item.id), class:"btn btn-secoundary" %>
+        <% else %>
+        <%= link_to "+", increase_path(orderitem_id: order_item.id), class:"btn btn-secoundary" %>
+        <% end %>
+        <%= order_item.quantity%>
+        <%= link_to "-", decrease_path(orderitem_id: order_item.id), class:"btn btn-secoundary" %>
+        </td>
+        <td><%= menu_item.price * order_item.quantity%> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<div class="row justify-content-center">
+<%= link_to 'Checkout',checkout_path,method: :get,class: "btn btn-danger"%>
+</div>
