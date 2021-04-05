@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get "/destroy", to: "cart#destroy"
   get "/addCart", to: "cart#add_to_cart"
   get "/checkout", to: "cart#checkout"
-  get "/orderHistory", to: "order#history"
+  get "/orderHistory", to: "order#show_history"
+  get "/changeStatus", to: "order#change_status"
+  get "/moreinfo", to: "order#more_info"
 end

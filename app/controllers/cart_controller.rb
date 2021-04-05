@@ -82,12 +82,14 @@ class CartController < ApplicationController
       if order_id == nil
         order_id = Order.create(user_id: session[:user_id], status: "pending")
         session[:order_id] = order_id
-        session[:count] = 0
+        session[:total] = Menuitem.find_by(id: order_item.menuitem_id).price
+        session[:count] = 1
         order_id.save
       end
       if order_item
         order_item.quantity += 1
         order_item.save
+        session[:count] = session[:count] + 1
       else
         # we will create an orderitem
         order_item = Orderitem.create(order_id: order_id, menuitem_id: params[:menuitem_id], quantity: 1)
@@ -95,7 +97,14 @@ class CartController < ApplicationController
         session[:count] = session[:count] + 1
       end
     else
-      render plain: "No cart found"
+      order = Order.create(user_id: session[:user_id], status: "pending")
+      order.save
+      session[:order_id] = order.id
+      order_item = Orderitem.create(order_id: order.id, menuitem_id: params[:menuitem_id], quantity: 1)
+      order_item.save
+      session[:count] = 1
+      cart = Cart.create(order_id: order.id, orderitem_id: order_item.id, user_id: session[:user_id])
+      cart.save
     end
     redirect_to menu_path
   end
@@ -103,10 +112,13 @@ class CartController < ApplicationController
   # checkout method is reponsible for clearing all the data from the cart model/ db and change
   # the status of the order as confirmed
   def checkout
+    order_id = Cart.find_by(user_id: session[:user_id]).order_id
+    order = Order.find_by(id: order_id)
+    order.status = "confirmed"
+    order.save
     Cart.destroy_by(user_id: session[:user_id])
-    order = Order.find_by(user_id: session[:user_id])
-    order.update_columns(status: "confirmed")
     session[:total] = 0
     session[:count] = 0
+    redirect_to orderHistory_path
   end
 end

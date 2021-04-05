@@ -9,7 +9,10 @@
 <% if flash[:notice]%>
 <p> <%= flash[:notice] %></p>
 <% end%>
+
+<% if @order_items%>
 <h6>Subtotal items (<span><%= session[:count]%></span> ): <span class="text-danger"><%= session[:total]%></span></h6>
+
 <table class = "table table-hover">
   <thead>
     <tr>
@@ -49,7 +52,13 @@
     <% end %>
   </tbody>
 </table>
+
 </div>
 <div class="row justify-content-center">
 <%= link_to 'Checkout',checkout_path,method: :get,class: "btn btn-danger"%>
 </div>
+<%else%>
+<div class="row justify-content-center ">
+<p> <strong> No items to display</strong> </p>
+</div>
+<%end%>

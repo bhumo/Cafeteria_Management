@@ -15,6 +15,8 @@
      <%= render partial: "component/navbarAdmin"%>
      <% elsif (@user && @user.role=="customer") or (session && session[:view]==1)%>
      <%= render partial: "component/navbarCustomer"%>
+     <% elsif (@user && @user.role=="clerk") or (session && session[:view]==3)%>
+     <%= render partial: "component/navbarClerk"%>
     <% else %>
       <%= render partial:"component/navbar"%>
     <%end%>
