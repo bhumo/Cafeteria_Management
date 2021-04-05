@@ -10,9 +10,9 @@
           Hi, <%= session[:user_name]%>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" data-toggle="modal" data-target="#myModal">>Add Clerk</a>
-          <a class="dropdown-item" href="#!">All Customers</a>
-          <a class="dropdown-item" href="#!">All Clerks</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#myModal">Add Clerk</a>
+          <a class="dropdown-item" href="/showCustomers">All Customers</a>
+          <a class="dropdown-item" href="/showClerks">All Clerks</a>
           <a class="dropdown-item" href="#!">Change Password</a>
 
         </div>
@@ -53,7 +53,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Add Clerk</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
         </div>

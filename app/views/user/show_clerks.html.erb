@@ -1,0 +1,31 @@
+<div>
+<h1>Customers</h1>
+</div>
+<div>
+<% if flash[:notice]%>
+<p> <%= flash[:notice] %></p>
+<% end%>
+
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Total No Of Orders</th>
+      <th> Status</th>
+      <th>Delete</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_list.each do |user| %>
+      <tr>
+      <td><%=user[:name]%></td>
+      <td> <%=user[:total_orders]%></td>
+      <td> <%=user[:status]%></td>
+      <td> Delete</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

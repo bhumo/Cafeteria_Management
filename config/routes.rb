@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get "/orderHistory", to: "order#show_history"
   get "/changeStatus", to: "order#change_status"
   get "/moreinfo", to: "order#more_info"
+  get "/showCustomers", to: "user#show_customers"
+  get "/showClerks", to: "user#show_clerks"
 end

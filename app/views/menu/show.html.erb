@@ -17,7 +17,9 @@
       <th>Description</th>
       <th>Price</th>
       <th>Category</th>
+      <%if session[:view]==1 or session[:view]==3%>
       <th> Add to Cart</th>
+      <%end%>
       <% if session[:view]==2%>
       <th>Delete</th>
       <% end %>
@@ -26,6 +28,9 @@
   </thead>
 
   <tbody>
+  <% if @menu_items==nil%>
+  <% @menu_items = Menuitem.all%>
+  <%end%>
     <% @menu_items.each do |menu_item| %>
       <tr>
         <td><%= menu_item.name %></td>

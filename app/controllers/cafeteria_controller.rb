@@ -31,8 +31,8 @@ class CafeteriaController < ApplicationController
     cart = Cart.find_by(user_id: session[:user_id])
     count = 0
     if cart
-      orders = Orderitem.find_by(order_id: cart.order_id)
-      oders.each do |item|
+      orders = Orderitem.where(order_id: cart.order_id)
+      orders.each do |item|
         count += item.quantity
       end
     end
