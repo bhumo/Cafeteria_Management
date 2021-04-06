@@ -22,4 +22,10 @@ class UserController < ApplicationController
       @user_list.push(user_hash)
     end
   end
+
+  def show_chart_by_month
+    if session[:view] != 2
+      redirect_to cafeteria_path
+    end
+  end
 end

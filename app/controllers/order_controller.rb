@@ -86,4 +86,10 @@ class OrderController < ApplicationController
       @order_items_list.push(order_hash)
     end
   end
+
+  def show_sales_by_month
+    if session[:view] != 2
+      redirect_to cafeteria_path
+    end
+  end
 end

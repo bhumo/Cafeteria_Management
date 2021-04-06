@@ -22,4 +22,9 @@ Rails.application.routes.draw do
   get "/moreinfo", to: "order#more_info"
   get "/showCustomers", to: "user#show_customers"
   get "/showClerks", to: "user#show_clerks"
+  get "/showUserByMonth", to: "chart#new_user_month"
+  get "/chartUsers", to: "user#show_chart_by_month"
+  get "/chartSales", to: "order#show_sales_by_month"
+  get "/showChartSales", to: "chart#orders_by_month"
+  get "/contact", to: "contact#show_contact"
 end
